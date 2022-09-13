@@ -43,7 +43,9 @@ $x = true and false;
 var_dump($x);
 ```
 
+> ```
 > bool(true).
+> ```
 > o recebimento dos valores na variavel $x estão sem chaves, então o "=" precede o operador > and na operação, deixando a variavel $x com o valor true;
 > Se fosse assim, ele seria false:
 
@@ -66,10 +68,15 @@ $a = array(
 var_dump($a);
 ```
 
+> ```
 > array(4) { [0]=> int(11) [1]=> int(7) [2]=> int(1) [3]=> int(5) }
+> ```
 > O operador ++ para incrementar tem prioridade em cima do '+' na sequencia, então a operação acontece da seguinte maneira:
+>
 > ($x++) "$x no momento vale 6" (+ $x) "ele soma com o valor 5 da variavel anteriormente, dando o valor 11". Após isso ele não atribui o segundo incremento '++' na soma.
+>
 > O segundo incremento da posição [0] do array incrementa o valor de "6" resultado do primeiro incremento para "7" incrementando a segunda vez posição [0] do array, deixando a variavel $x na posição [1] do array com o valor de "7" o decremento se a mesma lógica do incremento, assim "6" - "5" é igual a "1" na posição [2] do array.
+>
 > a ultima posição volta a ser "5" por causa do segundo decremento de $x.
 
 
@@ -81,17 +88,22 @@ $b = &$a;
 $b = "2$b";
 ```
 
+> ```
 > 21
 > 21
+> ```
+>
 > O & é usado para atribuir o valor da variavel $a e a $b no mesmo endereço de memória, assim alterando $a ou $b os proximos resultados serão os mesmos
 
 ### 5. O que são Traits e para que servem? 
 
 > Traits são pedaços de código que servem para reutilização de códigos.
+>
 > São bem parecidas com classes utilizadas para herança, a diferença é que ela não pode ser instanciada como objeto ou serem extendidas pela classe, somente sendo utilizadas através do:
-
+>
 > sendo incorporada no código antes da declaração da classe por meio do import;
-> use NomeDaTrait; após a abertura da classe; 
+>
+> `use NomeDaTrait;` após a abertura da classe; 
 
 ### 6. Qual será a saída do código abaixo? Por quê?
 
@@ -101,11 +113,19 @@ var_dump('0123' == 123);
 var_dump('0123' === 123);
 ```
 
+
+> ```
 > bool(false) bool(true) bool(false)
+> ```
+>
 > A interpretação do php por padrão entende que um numero com 4 casas decimais é Octal.
+>
 > Assim o numero 0123 em Octal não é igual 123.
+>
 > Já quando você compara com o mesmo número em uma string ele entende como um número decimal 0123 é igual 123.
+>
 > O comparador "===" é usado para comparar o valor e o tipo.
+>
 > Já o comparador "==" é usado para comparar apenas o valor e não o tipo dele
 
 ### 7. Qual será a saída do código abaixo? Por quê?
@@ -129,7 +149,11 @@ $x = 3 + "15%";
 ```
 
 > O resultado dá 18, imprimindo o $x com um echo, mas somente aparece o resultado após um erro informando que "15%" não é um valor numérico. `Notice: A non well formed numeric value encountered in PATH\teste\index.php on line 2`
-> Mas, se você dar um intval("15%") o resultado é 15, o PHP informa um erro mas continuando > o PHP interpreta "15%" como um valor INT 15 e soma com 3, dando 18.
+>
+> Mas, se você dar um intval("15%") o resultado é 15, o PHP informa um erro mas continuando 
+>
+> o PHP interpreta "15%" como um valor INT 15 e soma com 3, dando 18.
+>
 > Assim 
 ```php
 $x = 3 + intval("15%"); 
@@ -140,6 +164,7 @@ echo $x; // 18
 ### 9. Qual a diferença entre `require_once()` e `include_once()`?
 
 > As duas função requisitam um arquivo, somente uma única vez. Não podendo ser chamado novamente em outra parte do código.
+>
 > A diferença é que em um caso de erro o `require_once()` para de executar o script, já o `include_once()` informa o erro e continua a execução do PHP.
 
 ### 10. Qual será o valor de `$name` após a execução do código abaixo? Por quê?
@@ -164,7 +189,9 @@ echo gettype($y);
 ```
 
 > A constante `PHP_INT_MAX` é uma cosntante pré-definida pelo PHP, ela tem o valor do maior inteiro suportado dependendo da arquitetura do sistema que esta executando, 32bits ou 64bits.
+>
 > No meu caso de 64bits o valor dela é `int(9223372036854775807)`, somando com o 1 o valor fica: `int(9223372036854775807)`
+>
 > Executando o código da pergunta o primeiro resultado da negativo:
 ```php
 $x = PHP_INT_MAX; // tipo inteiro
@@ -172,7 +199,7 @@ $x = PHP_INT_MAX; // tipo inteiro
 echo gettype($x + 1); // -9223372036854775808 tipo double/float
 echo (int)($x + 1); //-9223372036854775808
 ```
-> No caso da variavel $y o valor 1.0 é um float, ele retorna apenas o '1' na tela por que is_float() é uma validação e essa validação é verdadeira, por tanto é 1.
+> No caso da variavel `$y` o valor 1.0 é um float, ele retorna apenas o '1' na tela por que `is_float()` é uma validação e essa validação é verdadeira, por tanto é 1.
 
 ### 12. Qual será o valor de `$x` após a execução do código abaixo? Por quê?
 
@@ -180,8 +207,10 @@ echo (int)($x + 1); //-9223372036854775808
 $x = "one" + 1;
 ```
 
-> Novamente, o PHP interpreta a string como inteiro, convertendo a string para 0 e depois somando com "1" é igual a "1".
+> Novamente, o `PHP` interpreta a string como inteiro, convertendo a string para 0 e depois somando com "1" é igual a "1".
+>
 > Mas seguido de um Warning informando que o valor não é numérico.
+>
 `Warning: A non-numeric value encountered in PATH\teste\index.php on line 3`
 
 ### 13. Qual a diferença entre `isset()` e `empty()`?
